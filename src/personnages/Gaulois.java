@@ -15,7 +15,6 @@ public class Gaulois {
 		return nom;
 	}
 
-	@Override
 	public String toString() {
 		return "Gaulois [nom=" + nom + ", force=" + force + ", effetPotion=" + effetPotion + "]";
 	}
@@ -33,11 +32,19 @@ public class Gaulois {
 		romain.recevoirCoup(force / 3);
 	}
 
+	void boirePotion(int forcePotion)
+	{
+		effetPotion = forcePotion;
+		parler("Merci Druide, je sens que ma force est " + forcePotion + " fois décuplée");
+	}
+	
 	public static void main(String[] args) {
 		Gaulois asterix = new Gaulois("Astérix", 8);
-		Romain solene = new Romain("Solène", 5);
+		Romain romain = new Romain("Romain (le mec de Emilie)", 5);
 		
+		System.out.println(asterix);
 		asterix.parler("Hey");
-		asterix.frapper(solene);
+		asterix.frapper(romain);
+		asterix.boirePotion(5);
 	}
 }

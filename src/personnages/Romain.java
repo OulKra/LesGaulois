@@ -17,7 +17,7 @@ public class Romain {
 	public void recevoirCoup(int forceCoup) {
 		force -= forceCoup;
 		if (force > 0) {
-			
+			parler("Aie");
 		} else {
 			parler("J'abandonne...");
 		}
@@ -25,12 +25,5 @@ public class Romain {
 	public String getNom() {
 		// TODO Auto-generated method stub
 		return nom;
-	}
-	
-	public static void main(String[] args) {
-		Gaulois asterix = new Gaulois("Astérix", 8);
-		Romain solene = new Romain("Solène", 5);
-		
-		solene.parler("Hey");
 	}
 }
