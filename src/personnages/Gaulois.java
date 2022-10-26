@@ -7,8 +7,8 @@ public class Gaulois {
 
 	
 	private int force;
-	private int nb_trophees;
-	private Equipement trophees[] = new Equipement[100];
+	private int nbTrophees;
+	private Equipement[] trophees = new Equipement[100];
 	
 	public Gaulois(String nom, int force) {
 		super();
@@ -25,7 +25,7 @@ public class Gaulois {
 	}
 	
 	public void parler(String texte) {
-		System.out.println(prendreParole() + "«" + texte + "»");
+		System.out.println(prendreParole() + "ï¿½" + texte + "ï¿½");
 	}
 	
 	/*private String prendreParole() {
@@ -33,8 +33,7 @@ public class Gaulois {
 	}*/
 	
 	private String prendreParole() {
-		String texte = "Le gaulois " + nom + " : ";
-		return texte;
+		return "Le gaulois " + nom + " : ";
 		}
 
 	
@@ -43,27 +42,25 @@ public class Gaulois {
 		romain.recevoirCoup(force / 3);
 	}*/
 
-	public void frapper(Romain romain) 
+	public void frapper(Romain romain)
 	{
-		System.out.println(nom + " envoie un grand coup dans la	mâchoire de " + romain.getNom());
-		Equipement trophees[] = romain.recevoirCoup((force / 3) *
-		effetPotion);
-		for (int i = 0; trophees != null && i < trophees.length; i++, nb_trophees++) 
+		System.out.println(nom + " envoie un grand coup dans la	mï¿½choire de " + romain.getNom());
+		Equipement[] tropheeRomain = romain.recevoirCoup((force / 3) * effetPotion);
+		for (int i = 0; tropheeRomain != null && i < tropheeRomain.length; i++, nbTrophees++) 
 		{
-			this.trophees[nb_trophees] = trophees[i];
+			this.trophees[nbTrophees] = tropheeRomain[i];
 		}
-		return;
 	}
 
 	
 	void boirePotion(int forcePotion)
 	{
 		effetPotion = forcePotion;
-		parler("Merci Druide, je sens que ma force est " + forcePotion + " fois décuplée");
+		parler("Merci Druide, je sens que ma force est " + forcePotion + " fois dï¿½cuplï¿½e");
 	}
 	
 	public static void main(String[] args) {
-		Gaulois asterix = new Gaulois("Astérix", 8);
+		Gaulois asterix = new Gaulois("Astï¿½rix", 8);
 		Romain romain = new Romain("Romain (le mec de Emilie)", 5);
 		
 		System.out.println(asterix);
