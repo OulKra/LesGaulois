@@ -7,8 +7,8 @@ public class Gaulois {
 
 	
 	private int force;
-	private int nbTrophees;
-	private Equipement[] trophees = new Equipement[100];
+	private int nb_trophees;
+	public Equipement trophees[] = new Equipement[100];
 	
 	public Gaulois(String nom, int force) {
 		super();
@@ -25,42 +25,64 @@ public class Gaulois {
 	}
 	
 	public void parler(String texte) {
-		System.out.println(prendreParole() + "ï¿½" + texte + "ï¿½");
+		System.out.println(prendreParole() + "«" + texte + "»");
 	}
 	
-	/*private String prendreParole() {
-		return "Le gaulois " + nom + " : ";
-	}*/
 	
 	private String prendreParole() {
-		return "Le gaulois " + nom + " : ";
+		String texte = "Le gaulois " + nom + " : ";
+		return texte;
 		}
-
 	
-	/*public void frapper(Romain romain) {
-		System.out.println(nom + " envoie un grand coup dans la machoire de " + romain.getNom());
-		romain.recevoirCoup(force / 3);
-	}*/
+	
 
-	public void frapper(Romain romain)
+	public void frapper(Romain romain) 
 	{
-		System.out.println(nom + " envoie un grand coup dans la	mï¿½choire de " + romain.getNom());
-		Equipement[] tropheeRomain = romain.recevoirCoup((force / 3) * effetPotion);
-		for (int i = 0; tropheeRomain != null && i < tropheeRomain.length; i++, nbTrophees++) 
+		System.out.println(nom + " envoie un grand coup dans la	mâchoire de " + romain.getNom());
+		Equipement trophees[] = romain.recevoirCoup((force / 3) *
+		effetPotion);
+		for (int i = 0; trophees != null && i < trophees.length; i++, nb_trophees++) 
 		{
-			this.trophees[nbTrophees] = tropheeRomain[i];
+			this.trophees[nb_trophees] = trophees[i];
 		}
+		return;
 	}
 
 	
 	void boirePotion(int forcePotion)
 	{
 		effetPotion = forcePotion;
-		parler("Merci Druide, je sens que ma force est " + forcePotion + " fois dï¿½cuplï¿½e");
+		parler("Merci Druide, je sens que ma force est " + forcePotion + " fois décuplée");
 	}
 	
+	
+	
+	
+	
+	public void faireUneDonnation(Musee musee)
+	{
+		if(nb_trophees > 0)
+		{
+			String texte = "Je donne au musee tous mes trophees";
+			while(nb_trophees > 0)
+			{
+				Equipement equip = trophees[nb_trophees-1];
+				trophees[nb_trophees] = null;
+				nb_trophees--;
+				texte += "\n - " + equip.nom;
+				Trophee tropheePourDon = new Trophee(this, equip);
+				musee.donnerTrophees(this, tropheePourDon);
+			}
+			parler(texte);
+		}
+		else
+		{
+			parler("Je n'ai rien à donner :/");
+		}
+
+	}
 	public static void main(String[] args) {
-		Gaulois asterix = new Gaulois("Astï¿½rix", 8);
+		Gaulois asterix = new Gaulois("Astérix", 8);
 		Romain romain = new Romain("Romain (le mec de Emilie)", 5);
 		
 		System.out.println(asterix);
